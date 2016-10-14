@@ -1,6 +1,10 @@
-module Viz.LineChart exposing (..)
+module Viz.LineChart exposing (chart, render)
 
---where
+{-|
+
+@docs chart, render
+
+-}
 
 import D3.Scale as Scale
 import D3.Axis as Axis
@@ -20,6 +24,7 @@ type alias LineChart d =
     }
 
 
+{-| -}
 chart : (d -> Float) -> (d -> Float) -> LineChart d
 chart x y =
     { x = x
@@ -31,6 +36,7 @@ chart x y =
     }
 
 
+{-| -}
 render : LineChart d -> List d -> Svg.Svg a
 render chart data =
     let

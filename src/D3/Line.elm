@@ -1,16 +1,18 @@
-module D3.Line exposing (..)
+module D3.Line exposing (path, render, line)
 
--- where
+{-|
 
-import D3.Chart as Chart
-import D3.Scale as Scale
+@docs path, render, line
+
+-}
+
 import D3.Format as Format
-import D3.Axis as Axis
 import String
 import Svg
 import Svg.Attributes
 
 
+{-| -}
 path : List ( Float, Float ) -> Svg.Svg a
 path points =
     case points of
@@ -39,11 +41,13 @@ type alias Line d =
     }
 
 
+{-| -}
 line : (d -> Float) -> (d -> Float) -> Line d
 line x y =
     { x = x, y = y, interpolator = Linear }
 
 
+{-| -}
 render : Line d -> List d -> String
 render line data =
     case data of

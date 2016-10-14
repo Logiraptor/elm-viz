@@ -1,7 +1,5 @@
 module D3.Format exposing (..)
 
--- where
-
 import Regex
 
 

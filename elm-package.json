@@ -7,8 +7,10 @@
         "src"
     ],
     "exposed-modules": [
-        "D3",
-        "Viz"
+        "D3.Axis",
+        "D3.Line",
+        "D3.Scale",
+        "Viz.LineChart"
     ],
     "dependencies": {
         "elm-lang/core": "4.0.0 <= v < 5.0.0",

@@ -1,6 +1,10 @@
 module D3.Scale exposing (Scale, linear, transform, stretch, invert)
 
--- where
+{-|
+
+@docs Scale, linear, transform, stretch, invert
+
+-}
 
 
 type alias Interval =
@@ -10,6 +14,7 @@ type alias Interval =
     }
 
 
+{-| -}
 type alias Scale =
     { domain : Interval
     , range : Interval
@@ -21,11 +26,13 @@ interval ( start, end ) =
     { min = start, max = end, range = end - start }
 
 
+{-| -}
 linear : ( Float, Float ) -> ( Float, Float ) -> Scale
 linear domain range =
     { domain = interval domain, range = interval range }
 
 
+{-| -}
 stretch : List Float -> ( Float, Float ) -> Scale
 stretch values range =
     let
@@ -38,11 +45,13 @@ stretch values range =
         linear ( min, max ) range
 
 
+{-| -}
 transform : Scale -> Float -> Float
 transform { domain, range } x =
     (((x - domain.min) / domain.range) * range.range) + range.min
 
 
+{-| -}
 invert : Scale -> Float -> Float
 invert { domain, range } =
     transform { domain = range, range = domain }

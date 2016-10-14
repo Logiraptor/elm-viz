@@ -1,14 +1,18 @@
-module D3.Axis exposing (..)
+module D3.Axis exposing (Axis, axis, render, Orientation(Left, Top, Bottom, Right), orient)
 
--- where
+{-|
 
-import D3.Chart as Chart
+@docs axis, Axis, render, Orientation, orient
+
+-}
+
 import D3.Scale as Scale
 import D3.Format as Format
 import Svg
 import Svg.Attributes
 
 
+{-| -}
 type Orientation
     = Top
     | Bottom
@@ -21,6 +25,7 @@ type Ticks
     | EachPx Float
 
 
+{-| -}
 type alias Axis =
     { scale : Scale.Scale
     , ticks : Ticks
@@ -29,6 +34,7 @@ type alias Axis =
     }
 
 
+{-| -}
 axis : Scale.Scale -> Axis
 axis scale =
     { scale = scale, ticks = EachPx 100, orientation = Bottom, tickFormat = toString }
@@ -44,6 +50,7 @@ ticks s axis =
     { axis | ticks = Exactly s }
 
 
+{-| -}
 orient : Orientation -> Axis -> Axis
 orient o axis =
     { axis | orientation = o }
@@ -54,6 +61,7 @@ tickFormat f axis =
     { axis | tickFormat = f }
 
 
+{-| -}
 render : Axis -> Svg.Svg a
 render axis =
     let
