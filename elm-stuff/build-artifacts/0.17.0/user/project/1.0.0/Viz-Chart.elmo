@@ -1,0 +1,69 @@
+var _user$project$Viz_Chart$margins = F2(
+	function (m, c) {
+		return _elm_lang$core$Native_Utils.update(
+			c,
+			{margins: m});
+	});
+var _user$project$Viz_Chart$yTick = F2(
+	function (f, c) {
+		return _elm_lang$core$Native_Utils.update(
+			c,
+			{yTick: f});
+	});
+var _user$project$Viz_Chart$xTick = F2(
+	function (f, c) {
+		return _elm_lang$core$Native_Utils.update(
+			c,
+			{xTick: f});
+	});
+var _user$project$Viz_Chart$height = F2(
+	function (h, c) {
+		return _elm_lang$core$Native_Utils.update(
+			c,
+			{height: h});
+	});
+var _user$project$Viz_Chart$width = F2(
+	function (w, c) {
+		return _elm_lang$core$Native_Utils.update(
+			c,
+			{width: w});
+	});
+var _user$project$Viz_Chart$y = F2(
+	function (f, c) {
+		return _elm_lang$core$Native_Utils.update(
+			c,
+			{y: f});
+	});
+var _user$project$Viz_Chart$x = F2(
+	function (f, c) {
+		return _elm_lang$core$Native_Utils.update(
+			c,
+			{x: f});
+	});
+var _user$project$Viz_Chart$defaultChart = {
+	x: _elm_lang$core$Basics$always(0),
+	y: _elm_lang$core$Basics$always(0),
+	yTick: _elm_lang$core$Basics$toString,
+	xTick: _elm_lang$core$Basics$toString,
+	width: 400,
+	height: 300,
+	margins: {left: 40, right: 40, top: 40, bottom: 40}
+};
+var _user$project$Viz_Chart$fromOptions = function (options) {
+	return A3(
+		_elm_lang$core$List$foldl,
+		F2(
+			function (f, x) {
+				return f(x);
+			}),
+		_user$project$Viz_Chart$defaultChart,
+		options);
+};
+var _user$project$Viz_Chart$Margins = F4(
+	function (a, b, c, d) {
+		return {left: a, right: b, top: c, bottom: d};
+	});
+var _user$project$Viz_Chart$Chart = F7(
+	function (a, b, c, d, e, f, g) {
+		return {x: a, y: b, xTick: c, yTick: d, width: e, height: f, margins: g};
+	});

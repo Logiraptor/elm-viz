@@ -1,0 +1,48 @@
+var _user$project$D3_Scale$transform = F2(
+	function (_p0, x) {
+		var _p1 = _p0;
+		var _p3 = _p1.range;
+		var _p2 = _p1.domain;
+		return (((x - _p2.min) / _p2.range) * _p3.range) + _p3.min;
+	});
+var _user$project$D3_Scale$invert = function (_p4) {
+	var _p5 = _p4;
+	return _user$project$D3_Scale$transform(
+		{domain: _p5.range, range: _p5.domain});
+};
+var _user$project$D3_Scale$interval = function (_p6) {
+	var _p7 = _p6;
+	var _p9 = _p7._0;
+	var _p8 = _p7._1;
+	return {min: _p9, max: _p8, range: _p8 - _p9};
+};
+var _user$project$D3_Scale$linear = F2(
+	function (domain, range) {
+		return {
+			domain: _user$project$D3_Scale$interval(domain),
+			range: _user$project$D3_Scale$interval(range)
+		};
+	});
+var _user$project$D3_Scale$stretch = F2(
+	function (values, range) {
+		var min = A2(
+			_elm_lang$core$Maybe$withDefault,
+			0,
+			_elm_lang$core$List$minimum(values));
+		var max = A2(
+			_elm_lang$core$Maybe$withDefault,
+			min,
+			_elm_lang$core$List$maximum(values));
+		return A2(
+			_user$project$D3_Scale$linear,
+			{ctor: '_Tuple2', _0: min, _1: max},
+			range);
+	});
+var _user$project$D3_Scale$Interval = F3(
+	function (a, b, c) {
+		return {min: a, max: b, range: c};
+	});
+var _user$project$D3_Scale$Scale = F2(
+	function (a, b) {
+		return {domain: a, range: b};
+	});

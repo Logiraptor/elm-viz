@@ -1,0 +1,165 @@
+var _user$project$Viz_LineChart$yAxis = F2(
+	function (opt, c) {
+		return _elm_lang$core$Native_Utils.update(
+			c,
+			{
+				yAxisOpts: A2(_elm_lang$core$List_ops['::'], opt, c.yAxisOpts)
+			});
+	});
+var _user$project$Viz_LineChart$xAxis = F2(
+	function (opt, c) {
+		return _elm_lang$core$Native_Utils.update(
+			c,
+			{
+				xAxisOpts: A2(_elm_lang$core$List_ops['::'], opt, c.xAxisOpts)
+			});
+	});
+var _user$project$Viz_LineChart$height = F2(
+	function (h, c) {
+		return _elm_lang$core$Native_Utils.update(
+			c,
+			{height: h});
+	});
+var _user$project$Viz_LineChart$width = F2(
+	function (w, c) {
+		return _elm_lang$core$Native_Utils.update(
+			c,
+			{width: w});
+	});
+var _user$project$Viz_LineChart$render = F2(
+	function (chart, data) {
+		var maxY = A2(
+			_elm_lang$core$Maybe$withDefault,
+			0,
+			_elm_lang$core$List$maximum(
+				A2(_elm_lang$core$List$map, chart.y, data)));
+		var minY = A2(
+			_elm_lang$core$Maybe$withDefault,
+			0,
+			_elm_lang$core$List$minimum(
+				A2(_elm_lang$core$List$map, chart.y, data)));
+		var maxX = A2(
+			_elm_lang$core$Maybe$withDefault,
+			0,
+			_elm_lang$core$List$maximum(
+				A2(_elm_lang$core$List$map, chart.x, data)));
+		var minX = A2(
+			_elm_lang$core$Maybe$withDefault,
+			0,
+			_elm_lang$core$List$minimum(
+				A2(_elm_lang$core$List$map, chart.x, data)));
+		var margin = {top: 40, right: 40, bottom: 40, left: 40};
+		var width = (chart.width - margin.left) - margin.right;
+		var x = A2(
+			_user$project$D3_Scale$linear,
+			{ctor: '_Tuple2', _0: minX, _1: maxX},
+			{ctor: '_Tuple2', _0: 0, _1: width});
+		var xAxis = A3(
+			_elm_lang$core$List$foldl,
+			F2(
+				function (x, y) {
+					return x(y);
+				}),
+			_user$project$D3_Axis$axis(x),
+			chart.xAxisOpts);
+		var height = (chart.height - margin.top) - margin.bottom;
+		var y = A2(
+			_user$project$D3_Scale$linear,
+			{ctor: '_Tuple2', _0: minY, _1: maxY},
+			{ctor: '_Tuple2', _0: height, _1: 0});
+		var yAxis = A3(
+			_elm_lang$core$List$foldl,
+			F2(
+				function (x, y) {
+					return x(y);
+				}),
+			A2(
+				_user$project$D3_Axis$orient,
+				_user$project$D3_Axis$Left,
+				_user$project$D3_Axis$axis(y)),
+			chart.yAxisOpts);
+		var line = A2(
+			_user$project$D3_Line$line,
+			function (_p0) {
+				return A2(
+					_user$project$D3_Scale$transform,
+					x,
+					chart.x(_p0));
+			},
+			function (_p1) {
+				return A2(
+					_user$project$D3_Scale$transform,
+					y,
+					chart.y(_p1));
+			});
+		return A2(
+			_elm_lang$svg$Svg$svg,
+			_elm_lang$core$Native_List.fromArray(
+				[
+					_elm_lang$svg$Svg_Attributes$width(
+					_user$project$D3_Format$px((width + margin.left) + margin.right)),
+					_elm_lang$svg$Svg_Attributes$height(
+					_user$project$D3_Format$px((height + margin.top) + margin.bottom))
+				]),
+			_elm_lang$core$Native_List.fromArray(
+				[
+					A2(
+					_elm_lang$svg$Svg$g,
+					_elm_lang$core$Native_List.fromArray(
+						[
+							_elm_lang$svg$Svg_Attributes$transform(
+							A2(
+								_user$project$D3_Format$formatString,
+								'translate(?,?)',
+								_elm_lang$core$Native_List.fromArray(
+									[margin.left, margin.top])))
+						]),
+					_elm_lang$core$Native_List.fromArray(
+						[
+							A2(
+							_elm_lang$svg$Svg$g,
+							_elm_lang$core$Native_List.fromArray(
+								[
+									_elm_lang$svg$Svg_Attributes$transform(
+									A2(
+										_user$project$D3_Format$formatString,
+										'translate(0,?)',
+										_elm_lang$core$Native_List.fromArray(
+											[height])))
+								]),
+							_elm_lang$core$Native_List.fromArray(
+								[
+									_user$project$D3_Axis$render(xAxis)
+								])),
+							_user$project$D3_Axis$render(yAxis),
+							A2(
+							_elm_lang$svg$Svg$path,
+							_elm_lang$core$Native_List.fromArray(
+								[
+									_elm_lang$svg$Svg_Attributes$fill('none'),
+									_elm_lang$svg$Svg_Attributes$stroke('black'),
+									_elm_lang$svg$Svg_Attributes$d(
+									A2(_user$project$D3_Line$render, line, data))
+								]),
+							_elm_lang$core$Native_List.fromArray(
+								[]))
+						]))
+				]));
+	});
+var _user$project$Viz_LineChart$chart = F2(
+	function (x, y) {
+		return {
+			x: x,
+			y: y,
+			height: 300,
+			width: 400,
+			xAxisOpts: _elm_lang$core$Native_List.fromArray(
+				[]),
+			yAxisOpts: _elm_lang$core$Native_List.fromArray(
+				[])
+		};
+	});
+var _user$project$Viz_LineChart$LineChart = F6(
+	function (a, b, c, d, e, f) {
+		return {x: a, y: b, width: c, height: d, xAxisOpts: e, yAxisOpts: f};
+	});

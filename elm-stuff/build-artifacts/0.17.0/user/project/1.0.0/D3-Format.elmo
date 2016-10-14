@@ -1,0 +1,30 @@
+var _user$project$D3_Format$formatDelim = _elm_lang$core$Regex$regex('\\?');
+var _user$project$D3_Format$formatString = F2(
+	function (fmt, args) {
+		formatString:
+		while (true) {
+			var _p0 = args;
+			if (_p0.ctor === '[]') {
+				return fmt;
+			} else {
+				var _v1 = A4(
+					_elm_lang$core$Regex$replace,
+					_elm_lang$core$Regex$AtMost(1),
+					_user$project$D3_Format$formatDelim,
+					function (_p1) {
+						return _elm_lang$core$Basics$toString(_p0._0);
+					},
+					fmt),
+					_v2 = _p0._1;
+				fmt = _v1;
+				args = _v2;
+				continue formatString;
+			}
+		}
+	});
+var _user$project$D3_Format$px = function (x) {
+	return A2(
+		_elm_lang$core$Basics_ops['++'],
+		_elm_lang$core$Basics$toString(x),
+		'px');
+};
